@@ -1,0 +1,16 @@
+{
+  "name": "2fa_google_authenticator",
+  "version": "1.0.0",
+  "description": "demo 2fa google authenticator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nguyen trung kien",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "qrcode": "^1.5.0",
+    "speakeasy": "^2.0.0"
+  }
+}
