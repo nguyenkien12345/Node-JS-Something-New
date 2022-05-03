@@ -1,0 +1,17 @@
+{
+  "name": "democookie",
+  "version": "1.0.0",
+  "description": "demo cookie ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "nguyen trung kien",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
