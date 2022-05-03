@@ -1,0 +1,17 @@
+{
+  "name": "spinnerandloadersinconsole",
+  "version": "1.0.0",
+  "description": "demo make spinner and loaders in console",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "nguyen trung kien",
+  "license": "ISC",
+  "dependencies": {
+    "log-update": "^5.0.1",
+    "nodemon": "^2.0.16"
+  },
+  "type": "module"
+}

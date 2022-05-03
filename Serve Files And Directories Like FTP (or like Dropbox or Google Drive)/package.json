@@ -1,0 +1,17 @@
+{
+  "name": "ftp",
+  "version": "1.0.0",
+  "description": "Demo Serve Files and Directories like FTP (or like Dropbox or Google Drive)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "nguyen trung kien",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.0",
+    "nodemon": "^2.0.16",
+    "serve-index": "^1.9.1"
+  }
+}

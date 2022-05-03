@@ -3,7 +3,10 @@ const nodemailer = require('nodemailer');   // Thư viện hỗ trợ email
 const gTTS = require('gtts');               // Thư viện hỗ trợ text to speech
 const fs = require('fs');                   // Thư viện hệ thống
 const fastcsv = require('fast-csv');        // Thư viện hỗ trợ tải file csv
-const { json } = require('express');
+const twilio = require('twilio');           // Thư viện hỗ trợ gửi sms
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -108,33 +111,64 @@ app.use('/public', express.static(__dirname + '/public'));
 // -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Hướng dẫn lưu file json
-const EPL = {
-    id: 1,
-    rank: 1,
-    name: 'Manchester City',
-    tournament: 'Premier League'
-}
+// const EPL = {
+//     id: 1,
+//     rank: 1,
+//     name: 'Manchester City',
+//     tournament: 'Premier League'
+// }
 
-const Bundesliga = {
-    id: 2,
-    rank: 2,
-    name: 'Borussia Dortmund',
-    tournament: 'Bundesliga'
-}
+// const Bundesliga = {
+//     id: 2,
+//     rank: 2,
+//     name: 'Borussia Dortmund',
+//     tournament: 'Bundesliga'
+// }
 
-const saveData = (data, file) => {
-    const finished = (error) => {
-        if (error) {
-            console.log(error);
-            return;
-        }
-    }
-    const jsonData = JSON.stringify(data, null, 2);
-    fs.writeFile(file, jsonData, finished);
-}
+// const saveData = (data, file) => {
+//     const finished = (error) => {
+//         if (error) {
+//             console.log(error);
+//             return;
+//         }
+//     }
+//     const jsonData = JSON.stringify(data, null, 2);
+//     fs.writeFile(file, jsonData, finished);
+// }
 
-saveData(EPL, 'EPL.json');
-saveData(Bundesliga, 'Bundesliga.json');
+// saveData(EPL, 'EPL.json');
+// saveData(Bundesliga, 'Bundesliga.json');
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// DEMO SMS
+app.get("/sendSMS", async (req, res, next) => {
+    var accountSid = process.env.Account_SID;        // Your Account SID from www.twilio.com/console
+    var authToken = process.env.Auth_Token;          // Your Auth Token from www.twilio.com/console
+
+    var client = new twilio(accountSid, authToken);
+
+    client.messages
+        .create({
+            body: "Hello Park Chaeyoung Hana",
+            to: "+84972579495",         // Text this number
+            from: "+19379303753",       // From a valid Twilio number
+        })
+        .then((data) => {
+            console.log("Data: ", data);
+            return res.status(201).json({
+                message: 'Send otp successfully',
+                status: true
+            })
+        })
+        .catch((err) => {
+            console.log("Errror: ", err);
+            return res.status(409).json({
+                message: 'Send otp failure',
+                status: false
+            })
+        })
+
+});
 // -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const PORT = process.env.PORT || 8080;
