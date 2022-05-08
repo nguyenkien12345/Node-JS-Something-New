@@ -1,0 +1,78 @@
++ Thứ tự chạy: build => ship => run
+
++ docker build -t (tên tag) .
+Vd: docker build -t docker-rest-api:1.0.0
+Lưu ý: 
+- Phải có dấu chấm cuối cùng để nó biết file Dockerfile nằm cùng chung thư mục hiện tại (Thiếu dấu chấm (.) cuối cùng là không chạy)
+- -t nghĩa là tag
+- docker-rest-api:1.0.0 ta sẽ tự đặt tên tag này miễn làm sao chúng ta hiểu
+
++ docker history (tên tag mà chúng ta muốn tìm kiếm): Hiển thị lịch sử chỉnh sửa của tag đó
+Vd: docker history docker-rest-api:1.0.0
+
++ docker images
+
++ docker run -p PORT:PORT (tên tag mà chúng ta muốn run)
+Vd: docker run -p 3000:3000 docker-rest-api:1.0.0
+
++ Khi chạy docker này ở phía local mình chưa đưa lên container là nó làm nghẽn cái thao tác này của chúng ta nên sẽ không thể 
+dùng ctrl c để thoát được mà bắt buộc phải dùng kill terminal
+
++ docker ps: Kiểm tra xem docker của chúng ta có những container nào
+
++ docker images: Kiểm tra xem docker của chúng ta có những images nào
+
++ docker stop (cái id của container mà chúng ta muốn stop nó lại không cho nó chạy nữa)
+Vd: docker stop f62661fab31
+
++ docker start (cái id của container mà chúng ta muốn start nó lại cho nó tiếp tục chạy)
+Vd: docker start f62661fab31
+
++ docker rm (cái id của container mà chúng ta muốn xóa nó đi không cho nó tồn tại nữa)
+Vd: docker rm f62661fab31
+
++ docker run --name v1-rest-api -d -p 3000:3000 docker-rest-api:1.0.0
+
++ docker logs -f v1-rest-api
+Khởi động cái project v1-rest-api
+
++ ls la: Hiển thị ra các thư mục đang có trong project
+
++ node -v
+Kiểm tra version của node trong container
+
++ Chúng ta cũng có dockerhub để lưu trữ các container tương tự như github. Đăng ký tài khoản dockerhub
+
+-------------------------------------------------------------------------------------------------------
+
+Cách đẩy docker lên dockerhub
+- docker tag local-image:tagname new-repo:tagname
+- docker push new-repo:tagname
+
+Vd: docker tag docker-rest-api:1.0.0 nguyentrungkien/docker-rest-api:1.0.0
+- docker-rest-api:1.0.0 là tên tag docker trên máy chúng ta
+- docker push nguyentrungkien/docker-rest-api:1.0.0
+- nguyentrungkien/docker-rest-api:1.0.0: Trong đó nguyentrungkien là username trong dockerhub, docker-rest-api:1.0.0 là tên repo trong dockerhub
+
++ Lấy repo trên dockerhub về chạy
+Vd: docker run --name v2-rest-api -d -p 3000:3000 nguyentrungkien/docker-rest-api:1.0.0
+Ta sẽ lấy repo nguyentrungkien/docker-rest-api:1.0.0 về và chạy với cái name mà ta tự đặt là v2-rest-api
+
++ docker run --help: In ra các lệnh chạy trong docker
+
++ Nếu mà chúng ta chạy docker run thì đầu tiên nó sẽ tìm trong máy của chúng ta trước, nếu mà trong máy của chúng ta có rồi thì nó sẽ chạy rất là nhanh
+còn nếu mà chúng ta chưa có images đó thì tự động nó sẽ chạy lên dockerhub để tìm kiếm 
+
++ docker run -d -p 3000:3000 --name mynginx nginx
+- mynginx: tên cho cái container mình đặt (mynginx là cái tên mới)
+- nginx: tên của cái image mà mình muốn sử dụng để tạo ra cái container (nginx là cái tên cũ)
+
++ Mỗi 1 container như là 1 máy chủ ảo tức là mỗi 1 container là toàn bộ cái môi trường làm app hoạt động
+
++ docker exec -it v1-rest-api bash
+- bash lấy được cái dòng terminal để chui vào bên trong project xem trong project đang có cái gì
+- Truy cập vào project của chúng ta để xem các file con bên trong
+
++ exit là lệnh thoát
+
++ Kĩ thuật ghi đè file html của mình vào 1 file html đang có trên docker

@@ -1,0 +1,8 @@
+Cách lấy REFRESH_TOKEN
+B1) Vào https://developers.google.com/oauthplayground/
+B2) Kéo thanh scroll kiếm đến Drive API v3 => Copy url https://www.googleapis.com/auth/drive và dán vào ô input (input your own scopes)
+B3) Click vào bánh răng tick chọn Use your own OAuth credentials => Lúc này sẽ hiển thị ra 2 ô input điền OAuth Client ID và OAuth Client secret. Vào trong https://console.cloud.google.com/
+copy Client ID và Client secret và dán vào trong lại 2 ô input OAuth Client ID và OAuth Client secret. Sau đó close bánh răng lại rồi click chọn Authorize APIs
+B4) Click chọn email. Rùi cứ tiếp tục continue
+B5) Click vào Exchange authorization code for tokens => Nó sẽ generate ra 1 mã REFRESH_TOKEN
+B6) Copy và paste mã REFRESH_TOKEN vào file env
